@@ -11,10 +11,11 @@ public class Order
 	    private List<MenuItem> items;
 	    private double totalAmount;
 	    private String status; // e.g., "PLACED", "DELIVERED"
+	    private String paymentStatus;
 		
 	    
 	    public Order(int orderId, int customerId, int restaurantId, List<MenuItem> items, double totalAmount,
-				String status) {
+				String status,String paymentStatus) {
 			super();
 			this.orderId = orderId;
 			this.customerId = customerId;
@@ -22,6 +23,15 @@ public class Order
 			this.items = items;
 			this.totalAmount = totalAmount;
 			this.status = status;
+			this.paymentStatus = paymentStatus;
+		}
+	    public String getPaymentStatus() {
+			return paymentStatus;
+		}
+	    
+	    
+	    public void setPaymentStatus(String paymentStatus) {
+			this.paymentStatus = paymentStatus;
 		}
 
 
@@ -87,8 +97,12 @@ public class Order
 
 		@Override
 		public String toString() {
-			return "Order [orderId=" + orderId + ", totalAmount=" + totalAmount + ", status=" + status + "]";
+			return "Order [orderId=" + orderId + ", totalAmount=" + totalAmount + ", status=" + status
+					+ ", paymentStatus=" + paymentStatus + "]";
 		}
+
+
+	
 	    
 	    
 	    

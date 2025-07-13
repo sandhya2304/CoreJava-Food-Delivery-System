@@ -1,0 +1,3 @@
+1,John,john@mail.com,pass123,500.0,CUSTOMER
+2,Admin,admin@foodapp.com,admin123,0.0,ADMIN
+
