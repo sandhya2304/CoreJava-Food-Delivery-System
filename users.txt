@@ -1,6 +1,5 @@
-1,laila,laila@123,123,1000.0,CUSTOMER
-2,laila@123,123,ww,1000.0,CUSTOMER
-3,mimi,mimi@gmail,123,1000.0,CUSTOMER
-4,riya,riya@gmail,1234,1000.0,CUSTOMER
-5,era,era@gmail,123,1000.0,CUSTOMER
-6,admin@foodapp.com,admin123,a,1000.0,CUSTOMER
+id,name,email,password,walletBalance,role
+1,kity,kity@gmail,1234,1000.0,CUSTOMER
+2,mimi,mimi@gmail,1234,1000.0,CUSTOMER
+3,laila,laila@gmail,1234,1000.0,CUSTOMER
+

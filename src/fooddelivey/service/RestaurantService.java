@@ -15,7 +15,7 @@ import fooddelivey.model.Restaurant;
 
 public class RestaurantService
 {
-	
+	ReviewService reviewService = new ReviewService();
 	List<Restaurant> restaurants;
 	
 	
@@ -186,6 +186,32 @@ public class RestaurantService
 	}
 	
 	
+	/**
+	 * 
+	 * Serach Restaurant
+	 */
+	
+	public void searchRestaurants(String keyword)
+	{
+		keyword = keyword.toLowerCase();
+		boolean found = false;
+		
+		for(Restaurant rest : restaurants)
+		{
+			if(rest.getName().toLowerCase().contains(keyword) || 
+					  rest.getAddress().toLowerCase().contains(keyword))
+			{
+				System.out.println(rest);
+				found = true;
+			}		
+		}
+		if(!found)
+		{
+			 System.out.println("❌ No restaurants found for keyword: " + keyword);
+		}
+	}
+	
+	
 	/****
 	 * 
 	 * Filter and Search Functionality
@@ -267,7 +293,9 @@ public class RestaurantService
 		}
 		for(Restaurant rest : restaurants)
 		{
-			System.out.println(rest);
+			double avgRating = reviewService.getAvgRating(rest.getId());
+			System.out.println(rest + " | ⭐ Avg Rating: " + String.format("%.2f", avgRating));
+			
 		}
 		
 	}

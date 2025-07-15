@@ -1,1 +1,3 @@
-1,4,2,200.0,PREPARING,Paid,tandoori naan|butter makhni
+1,2,2,200.0,PLACED,Paid,tandoori naan|butter makhni
+2,3,2,500.0,PLACED,Paid,tandoori naan|papad
+3,1,2,200.0,PLACED,Paid,tandoori naan|butter makhni

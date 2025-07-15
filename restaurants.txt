@@ -1,2 +1,4 @@
 1,pizaa gallery,gurgaon
 2,galleria,new delhi
+3,icecream parlour,Hyderabad
+4,Taco Bell,Delhi

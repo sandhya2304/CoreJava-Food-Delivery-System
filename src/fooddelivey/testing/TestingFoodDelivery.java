@@ -10,6 +10,7 @@ import fooddelivey.model.User;
 import fooddelivey.service.AuthService;
 import fooddelivey.service.OrderService;
 import fooddelivey.service.RestaurantService;
+import fooddelivey.service.ReviewService;
 
 public class TestingFoodDelivery
 {
@@ -20,6 +21,7 @@ public class TestingFoodDelivery
 	        AuthService authService = new AuthService();
 	        RestaurantService restaurantService = new RestaurantService();
 	        OrderService orderService  = new OrderService();
+	        ReviewService reviewService = new ReviewService();
 	        
 	        
 	        User currentUser = null;
@@ -75,6 +77,8 @@ public class TestingFoodDelivery
 	                System.out.println("7. View All Orders");
 	                System.out.println("8. Update Order Status");
 	                System.out.println("9. Logout");
+	                System.out.println("10. View Reports");
+
 	                System.out.print("Choose option: ");
 	                int choice = sc.nextInt();
 	                sc.nextLine();
@@ -133,6 +137,9 @@ public class TestingFoodDelivery
 	                        System.out.println("🔒 Logged out!");
 	                        currentUser = null;
 	                        break;
+	                    case 10:
+	                    	orderService.showAdminReport(restaurantService, authService);
+	                    	break;
 	                    default:
 	                        System.out.println("⚠️ Invalid choice.");
 	                }
@@ -147,7 +154,11 @@ public class TestingFoodDelivery
 	                System.out.println("8. Filter Menu by Price");
 	                System.out.println("9. View Wallet Balance");
 	                System.out.println("10. Top up your wallet");
-	                System.out.println("11. Logout");
+	                System.out.println("11. Cancel My Order");
+	                System.out.println("12. Rate and Review a Restaurant");
+	                System.out.println("13. View Reviews of a Restaurant");
+	                System.out.println("14. Search Restaurant by Name or Address");
+	                System.out.println("15. Logout");
 
 	                
 	                System.out.print("Choose option: ");
@@ -264,11 +275,46 @@ public class TestingFoodDelivery
 	                	System.out.println("Enter amount to top up :");
 	                	double amt =sc.nextDouble();
 	                	sc.nextLine();
-	                	currentUser.setWalletBalance(currentUser.getWalletBalance()+amt);
+	                	authService.topUpWallet(currentUser, amt);
 	                    System.out.println("✅ Wallet topped up! New Balance: ₹" + currentUser.getWalletBalance());
                         break;
-	                	
+                       	
 	                case 11:
+	                    orderService.viewOrdersByUser(currentUser.getId());
+	                    System.out.println("Enter order id to cancel :");
+	                    int cancelID = sc.nextInt();
+	                    sc.nextLine();
+	                    orderService.cancelOrder(cancelID, currentUser.getId(), currentUser,authService);
+	                    break;	
+	                case 12:
+	                	restaurantService.viewAllRestaurant();
+	                	System.out.println("Enter restId to rate :");
+	                	int restRate = sc.nextInt();
+	                	sc.nextLine();
+	                	System.out.print("Enter rating (1-5): ");
+	                   
+	                	int rating = sc.nextInt();
+	                    sc.nextLine();
+
+	                    System.out.print("Write your comment: ");
+	                    String comment = sc.nextLine();
+
+	                    reviewService.addReview(currentUser.getId(), restRate, rating, comment); 
+	                	
+	                    break;
+	                case 13:
+	                	restaurantService.viewAllRestaurant();
+	                    System.out.println("View revies of a restaurant :");
+	                    int restToview = sc.nextInt();
+	                    sc.nextLine();
+	                    reviewService.printAllReview(restToview);
+	                    break;
+	                case 14:
+	                	System.out.println("Serach Restaurant by name or address");
+	                	String searchKeyword = sc.nextLine();
+	                	restaurantService.searchRestaurants(searchKeyword);
+	                	break;
+	                case 15:
 	                    currentUser = null;
 	                    System.out.println("🔒 Logged out!");
 	                    break;
